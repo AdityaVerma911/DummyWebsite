@@ -1,0 +1,426 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1 ,shrink-t0-fit=no">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="product1.css">
+
+
+    <script>
+        function imageZoom(imgID, resultID) {
+            var img, lens, result, cx, cy;
+            img = document.getElementById(imgID);
+            result = document.getElementById(resultID);
+            /*create lens:*/
+            lens = document.createElement("DIV");
+            lens.setAttribute("class", "img-zoom-lens");
+            /*insert lens:*/
+            img.parentElement.insertBefore(lens, img);
+            /*calculate the ratio between result DIV and lens:*/
+            cx = result.offsetWidth / lens.offsetWidth;
+            cy = result.offsetHeight / lens.offsetHeight;
+            /*set background properties for the result DIV:*/
+            result.style.backgroundImage = "url('" + img.src + "')";
+            result.style.backgroundSize = (img.width * cx) + "px " + (img.height * cy) + "px";
+            /*execute a function when someone moves the cursor over the image, or the lens:*/
+            lens.addEventListener("mousemove", moveLens);
+            img.addEventListener("mousemove", moveLens);
+            /*and also for touch screens:*/
+            lens.addEventListener("touchmove", moveLens);
+            img.addEventListener("touchmove", moveLens);
+
+            function moveLens(e) {
+                var pos, x, y;
+                /*prevent any other actions that may occur when moving over the image:*/
+                e.preventDefault();
+                /*get the cursor's x and y positions:*/
+                pos = getCursorPos(e);
+                /*calculate the position of the lens:*/
+                x = pos.x - (lens.offsetWidth / 2);
+                y = pos.y - (lens.offsetHeight / 2);
+                /*prevent the lens from being positioned outside the image:*/
+                if (x > img.width - lens.offsetWidth) {
+                    x = img.width - lens.offsetWidth;
+                }
+                if (x < 0) {
+                    x = 0;
+                }
+                if (y > img.height - lens.offsetHeight) {
+                    y = img.height - lens.offsetHeight;
+                }
+                if (y < 0) {
+                    y = 0;
+                }
+                /*set the position of the lens:*/
+                lens.style.left = x + "px";
+                lens.style.top = y + "px";
+                /*display what the lens "sees":*/
+                result.style.backgroundPosition = "-" + (x * cx) + "px -" + (y * cy) + "px";
+            }
+
+            function getCursorPos(e) {
+                var a, x = 0,
+                    y = 0;
+                e = e || window.event;
+                /*get the x and y positions of the image:*/
+                a = img.getBoundingClientRect();
+                /*calculate the cursor's x and y coordinates, relative to the image:*/
+                x = e.pageX - a.left;
+                y = e.pageY - a.top;
+                /*consider any page scrolling:*/
+                x = x - window.pageXOffset;
+                y = y - window.pageYOffset;
+                return {
+                    x: x,
+                    y: y
+                };
+            }
+        }
+    </script>
+
+</head>
+
+<body>
+
+    <header>
+
+        <div class="border-bottom">
+            <div class="container">
+                <nav class="navbar navbar-expand-lg navbar-light bg-light container">
+
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                  <span class="navbar-toggler-icon"></span>
+                </button>
+
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="navbar-nav mr-auto">
+                            <li class="nav-item active">
+                                <a class="nav-link demo" href="index.html">Home <span class="sr-only">(current)</span></a>
+                            </li>
+
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle demo" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        About the test
+                      </a>
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="#">Action</a>
+                                    <a class="dropdown-item" href="#">Another action</a>
+                                    <div class="dropdown-divider"></div>
+                                    <a class="dropdown-item" href="#">Something else here</a>
+                                </div>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle demo" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Level 1
+                      </a>
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="#">Action</a>
+                                    <a class="dropdown-item" href="#">Another action</a>
+                                    <div class="dropdown-divider"></div>
+                                    <a class="dropdown-item" href="#">Something else here</a>
+                                </div>
+                            </li>
+                            <li class="nav-item active">
+                                <a class="nav-link demo" href="home.html">Shop <span class="sr-only">(current)</span></a>
+                            </li>
+
+                        </ul>
+
+                    </div>
+                    <form class="form-inline my-2 my-lg-0">
+                        <input class="form-control mr-sm-2 ser" type="search" placeholder="Search" aria-label="Search">
+                        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                    </form>
+                </nav>
+            </div>
+        </div>
+
+    </header>
+
+    <div class="container">
+        <div class="row">
+            <!--  logo   -->
+            <div class="col-sm-12 header2 border-bottom ">
+                <img class="img-fluid" src="https://colorlib.com/activello/wp-content/uploads/sites/10/2015/11/logo.png" alt="activello" width="207px" height="28px">
+                <p>Just another colorlib.com site</p>
+            </div>
+
+
+
+
+
+            <div class="main-content-inner col-sm-12 col-md-8 side-right">
+
+                <nav aria-label="breadcrumb mb-3">
+
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item "><a href="../html/index.html">Home</a></li>
+                        <li class="breadcrumb-item "><a href="../html/shop.html">Shop</a></li>
+                        <li class="breadcrumb-item " aria-current="page">Flying Ninja</li>
+                    </ol>
+
+                </nav>
+
+                <div class="float-left product1 col-sm-12 col-md-6 ">
+                    <div class="img-zoom-container">
+                        <div id="myresult" class="img-zoom-result img-fluid"></div>
+                        <img id="myimage" src="https://colorlib.com/activello/wp-content/uploads/sites/10/2013/06/poster_2_up.jpg" width="200px" height="200px" class="img-fluid">
+                        <span class="onsale">SALE</span>
+                    </div>
+                </div>
+
+
+                <div class="float-left product1 col-sm-12 col-md-6 ">
+                    <h3>Flying Ninja</h3> <br>
+                    <div class="rating1 mb-1">
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star"></span>
+                        <span class="fa fa-star mr-3"></span> (2 Customer Reviews)
+                    </div> <br>
+                    <p><del>$15</del><span class="ml-2 ">$12</span>
+                        <br> <br> <br> Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper.
+                        Aenean ultricies mi vitae est. Mauris placerat eleifend leo.
+                    </p> <br>
+                    <button type="button" class="btn btn-light ">ADD TO CART</button>
+
+                </div>
+                <div class="clearfix"></div>
+
+
+                <div class=" col-12 ">
+                    <ul class="nav nav-tabs" id="myTab" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Description</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Reviews (2)</a>
+                        </li>
+                    </ul>
+                    <div class="tab-content my-5" id="myTabContent">
+
+                        <div class="tab-pane fade show active " id="home" role="tabpanel" aria-labelledby="home-tab">
+                            <h4>Description</h4>
+                            <p class="text-justify mt-2 line-height-3">Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean
+                                ultricies mi vitae est. Mauris placerat eleifend leo.
+
+                            </p>
+                        </div>
+
+
+                        <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                            <h5 class="mb-4">2 reviews for Flying Ninja</h5>
+
+                            <ul class="list-unstyled">
+
+                                <li class="media">
+                                    <img class="mr-3" src="https://secure.gravatar.com/avatar/f0cde930b42c79145194679d5b6e3b1d?s=60&d=mm&r=g" alt="Generic placeholder image">
+                                    <div class="media-body text-justify">
+                                        <b class="mt-0 mb-1"> Cobus Bester – June 7, 2013 </b> <br> Really happy with this print. The colors are great, and the paper quality is good too. </div>
+                                </li>
+
+
+                                <li class="media my-4">
+                                    <img class="mr-3" src="https://secure.gravatar.com/avatar/f0cde930b42c79145194679d5b6e3b1d?s=60&d=mm&r=g" alt="Generic placeholder image">
+                                    <div class="media-body text-justify">
+                                        <b class="mt-0 mb-1"> Andrew – June 7, 2013 </b> <br> Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis.
+                                        Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
+                                    </div>
+                                </li>
+
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class=" col-12 border-top  ">
+                    <h4 class="mt-4">Related products</h4>
+                    <div class="float-left card col-12 col-sm-6 col-md-3">
+                        <img src="https://colorlib.com/activello/wp-content/uploads/sites/10/2013/06/poster_1_up.jpg" class="card-img-top img-fluid my-3" alt="...">
+                        <div class="card-body">
+                            <h6 class="card-title my-2">Ship Your Idea</h6> <br> $15 <br>
+                            <button href="#" class="btn  my-3 bg-light">ADD TO CART</button>
+                        </div>
+                    </div>
+
+
+                    <div class="float-left card col-12 col-sm-6 col-md-3">
+                        <img src="https://colorlib.com/activello/wp-content/uploads/sites/10/2013/06/poster_5_up.jpg" class="card-img-top img-fluid my-3" alt="...">
+                        <div class="card-body">
+                            <h6 class="card-title my-2">Woo Logo</h6> <br> $15 <br>
+                            <button href="#" class="btn  my-3 bg-light">ADD TO CART</button>
+                        </div>
+                    </div>
+
+
+                    <div class="float-left card col-12 col-sm-6 col-md-3">
+                        <img src="https://colorlib.com/activello/wp-content/uploads/sites/10/2013/06/poster_4_up.jpg" class="card-img-top img-fluid my-3" alt="...">
+                        <div class="card-body">
+                            <h6 class="card-title my-2">Woo Ninja</h6> <br> $15 <br>
+                            <button href="#" class="btn  my-3 bg-light">ADD TO CART</button>
+                        </div>
+                    </div>
+
+
+                    <div class="float-left card col-12 col-sm-6 col-md-3">
+                        <img src="https://colorlib.com/activello/wp-content/uploads/sites/10/2013/06/poster_3_up.jpg" class="card-img-top img-fluid my-3" alt="...">
+                        <div class="card-body">
+                            <h6 class="card-title my-2 text-inline">Premium Quality</h6> <br> $15 <br>
+                            <button href="#" class="btn  my-3 bg-light">ADD TO CART</button>
+                        </div>
+                    </div>
+
+
+                </div>
+
+            </div>
+
+
+
+            <div class=" col-sm-12 col-md-4 ">
+                <div class="my-5">
+                    <p class="item1">PRODUCT CATEGORIES</p>
+                    <ul class="listtable1 align-items-center ">
+                        <li class="border-bottom ">Albums (4)</li>
+                        <li class="border-bottom ">Clothing (12)</li>
+                        <li class="border-bottom ">Hoodies (6)</li>
+                        <li class="border-bottom ">Music (6)</li>
+                        <li class="border-bottom ">Posters (5)</li>
+                        <li class="border-bottom ">Singles (2)</li>
+                        <li class="border-bottom ">T-shirts (6)</li>
+                        <li class="border-bottom ">Uncategorized (0)</li>
+                    </ul>
+
+                </div>
+
+                <div class="div3 mt-5">
+                    <p class="item1 ">RECENT POSTS </p>
+
+                    <div class="media mt-5">
+                        <img src="https://colorlib.com/activello/wp-content/uploads/sites/10/2015/11/photo-1438109491414-7198515b166b-150x150.jpg" class="align-self-start mr-3 img-fluid" alt="..." sizes="(max-width: 150px) 100vw, 150px" width="100" height="100">
+                        <div class="media-body">
+                            <h5><i>Post Format: Standard</i></h5>
+                            <p>- 05 Oct , 2016</p>
+                        </div>
+                    </div>
+
+                    <div class="media mt-3">
+                        <img src="https://colorlib.com/activello/wp-content/uploads/sites/10/2015/11/photo-1429734160945-4f85244d6a5a-150x150.jpg" class="align-self-start mr-3 img-fluid" alt="..." sizes="(max-width: 150px) 100vw, 150px" width="100" height="100">
+                        <div class="media-body">
+                            <h5><i>Post Format: Standard</i></h5>
+                            <p>- 10 Oct , 2016</p>
+                        </div>
+                    </div>
+
+                    <div class="media mt-3">
+                        <img src="https://colorlib.com/activello/wp-content/uploads/sites/10/2012/03/photo-1437915015400-137312b61975-150x150.jpg" class="align-self-start mr-3 img-fluid" alt="..." sizes="(max-width: 150px) 100vw, 150px" width="100" height="100">
+                        <div class="media-body">
+                            <h5><i>Post Format: Standard</i></h5>
+                            <p>- 25 Oct , 2016</p>
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+                <div class="my-5">
+                    <p class="item2">Top Rated Products</p>
+                    <ul class="listtable1 align-items-center ">
+                        <li class="border-bottom ">Woo Album #4 <br>
+                            <span class="rating1">                                                            
+                                                                    <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
+                            </span> <br> $9.00
+                        </li>
+                        <li class="border-bottom ">Happy Ninja <br>
+                            <span class="rating1">                                                            
+                                                                    <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
+                            </span> <br> $19.00
+
+                        </li>
+                        <li class="border-bottom ">Happy Ninja <br>
+                            <span class="rating1">                                                            
+                                                                    <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
+                            </span> <br> $30.00
+
+                        </li>
+                        <li class="border-bottom ">Happy Ninja <br>
+                            <span class="rating1">                                                            
+                                                                    <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
+                            </span> <br> $19.00
+
+                        </li>
+
+                    </ul>
+
+                </div>
+
+
+
+
+            </div>
+
+
+
+
+
+
+
+        </div>
+    </div>
+
+
+
+
+
+    <script>
+        // Initiate zoom effect:
+        imageZoom("myimage", "myresult");
+    </script>
+
+
+    <footer class="footer1">
+
+        <ul class="social-menu2 ">
+            <li><a href="https://www.facebook.com/colorlib"><i class="fa fa-facebook"  aria-hidden="true" ></i></a></li>
+            <li><a href="https://twitter.com/colorlib"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+            <li><a href="https://www.youtube.com/channel/UCOaovjLNXdIch2vLFsw_uew"><i class="fa fa-youtube-play" aria-hidden="true"></i></a></li>
+            <li><a href="https://plus.google.com/100289203607749737039"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
+            <li><a href="https://instagram.com"><i class="fa fa-google" aria-hidden="true"></i></a></li>
+            <li><a href="https://github.com/puikinsh/"><i class="fa fa-github" aria-hidden="true"></i></a></li>
+        </ul>
+
+
+    </footer>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+</body>
+
+</html>

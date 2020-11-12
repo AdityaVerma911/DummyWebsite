@@ -1,0 +1,39 @@
+.logo {
+  text-align: center;
+}
+
+.logo div {
+  padding-top: 25px;
+  padding-bottom: 25px;
+}
+
+.logo p {
+  font-style: italic;
+  color: #696969;
+}
+
+.nest {
+  text-align: center;
+  margin-top: 10px;
+}
+
+.nest p {
+  font-style: italic;
+  color: #696969;
+  margin: 0;
+  padding: 0;
+}
+
+.nest h2 {
+  padding-bottom: 10px;
+  padding-top: 10px;
+}
+
+.spa i {
+  margin-right: 20px;
+}
+
+.b9 i {
+  margin-right: 10px;
+}
+/*# sourceMappingURL=style.css.map */
